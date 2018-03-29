@@ -3,6 +3,8 @@ import { Recipe } from '../recipe.model';
 
 import { Ingredient } from '../../shared/ingredient.model';
 import { RecipeService } from '../recipe.service';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -10,11 +12,18 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  @Input() recipe: Recipe;
+  recipe: Recipe;
+  paramsSubscription: Subscription;
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.paramsSubscription = this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.recipe = this.recipeService.getRecipeByName(params['name'])[0];
+        }
+      );
   }
 
   onAddToShoppingList() {
