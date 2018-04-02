@@ -29,10 +29,8 @@ export class RecipeService {
 
   constructor(private shoppingListService: ShoppingListService) {}
 
-  getRecipeByName(name: string) {
-    return this.recipes.filter((item) => {
-      return item.name === name;
-    });
+  getRecipe(id: number) {
+    return this.recipes[id];
   }
 
   getRecipes() {
