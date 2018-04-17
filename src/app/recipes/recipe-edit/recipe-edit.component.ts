@@ -33,6 +33,11 @@ export class RecipeEditComponent implements OnInit {
       this.recipeService.updateRecipe(this.id, this.recipeForm.value);
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
+      // this.recipeService.saveRecipe(this.recipeForm.value).
+      //   subscribe(
+      //     (response) => { console.log(response); },
+      //     (error) => { console.log(error); }
+      //   );
     }
     this.onCancel();
   }
@@ -45,7 +50,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
-    let recipeIngredients = new FormArray([]);
+    const recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
       const recipe = this.recipeService.getRecipe(this.id);
@@ -53,7 +58,7 @@ export class RecipeEditComponent implements OnInit {
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
       if (recipe['ingredients']) {
-        for (let ingredient of recipe.ingredients) {
+        for (const ingredient of recipe.ingredients) {
           recipeIngredients.push(
             new FormGroup({
               'name': new FormControl(ingredient.name, Validators.required),

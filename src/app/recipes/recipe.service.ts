@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs/Subject';
+import { Http, Headers, Response } from '@angular/http';
+
 
 @Injectable()
 export class RecipeService {
@@ -28,7 +30,8 @@ export class RecipeService {
     ]),
   ];
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(private shoppingListService: ShoppingListService,
+              private http: Http) {}
 
   getRecipe(id: number) {
     return this.recipes[id];
@@ -37,6 +40,20 @@ export class RecipeService {
   getRecipes() {
     return this.recipes.slice();
   }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  // getRecipes() {
+  //   return this.http.get(
+  //     'https://udemy-course-project-844a5.firebaseio.com/data.json'
+  //   )
+  //   .map(
+  //     (response: Response) => response.json()
+  //   );
+  // }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
@@ -56,4 +73,12 @@ export class RecipeService {
     this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes);
   }
+
+  // saveRecipe() {
+  //   const headers = new Headers({'Content-Type': 'application/json'});
+  //   return this.http.put(
+  //     'https://udemy-course-project-844a5.firebaseio.com/data.json',
+  //     this.recipes,
+  //     {headers: headers});
+  // }
 }
