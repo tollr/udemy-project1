@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a style="cursor:pointer;" class="navbar-brand">Recipe Book</a>
+      <a style="cursor:pointer;" class="navbar-brand" routerLink="/">Recipe Book</a>
     </div>
     <div class="navbar-default">
       <ul class="nav navbar-nav">
@@ -15,7 +15,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <ng-template [ngIf]="!authService.isAuthenticated()">
+        <ng-template [ngIf]="!getAuthenticated()">
           <li>
             <a routerLink="/signup">Register</a>
           </li>
@@ -24,9 +24,9 @@
           </li>
         </ng-template>
 
-        <li *ngIf="authService.isAuthenticated()"><a style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
+        <li *ngIf="getAuthenticated()"><a style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
 
-        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+        <li class="dropdown" appDropdown *ngIf="getAuthenticated()">
           <a style="cursor:pointer;" class="dropdown-toggle" role="button">
             Manage
             <span class="caret"></span>
