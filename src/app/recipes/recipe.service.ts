@@ -1,11 +1,7 @@
 import { Recipe } from './recipe.model';
-import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs/Subject';
 
-
-@Injectable()
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
   recipesSelected = new Subject<Recipe>();
@@ -29,7 +25,7 @@ export class RecipeService {
     ]),
   ];
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor() {}
 
   getRecipe(id: number) {
     return this.recipes[id];
@@ -42,19 +38,6 @@ export class RecipeService {
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
-  }
-
-  // getRecipes() {
-  //   return this.http.get(
-  //     'https://udemy-course-project-844a5.firebaseio.com/data.json'
-  //   )
-  //   .map(
-  //     (response: Response) => response.json()
-  //   );
-  // }
-
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
   }
 
   addRecipe(recipe: Recipe) {
