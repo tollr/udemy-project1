@@ -3,7 +3,7 @@ import * as ShoppingListActions from './shopping-list.action';
 import {Ingredient} from '../../shared/ingredient.model';
 
 export interface AppState {
-  shopppingList: State;
+  shoppingList: State;
 }
 
 export interface State {
@@ -48,11 +48,18 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
       };
     case ShoppingListActions.DELETE_INGREDIENT:
       const oldIngredients = [...state.ingredients];
-      ingredients.slice(action.payload, 1);
+      oldIngredients.splice(action.payload, 1);
 
       return {
         ...state,
         ingredients: oldIngredients
+      };
+    case ShoppingListActions.START_EDIT:
+      const editedIngredient = {...state.ingredients[action.payload]};
+      return {
+        ...state,
+        editedIngredient: editedIngredient,
+        editedIngredientIndex: action.payload
       };
     default:
       return state;
