@@ -5,7 +5,6 @@ import {SharedModule} from '../shared/shared.module';
 import {AppRoutingModule} from '../app.routing.module';
 import {CommonModule} from '@angular/common';
 import {DataStorageService} from '../shared/data-storage.service';
-import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {RecipeService} from '../recipes/recipe.service';
 import {AuthService} from '../auth/auth.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -27,7 +26,6 @@ import {LoggingInterceptor} from '../shared/logging.interceptor';
     HeaderComponent
   ],
   providers: [
-    ShoppingListService,
     RecipeService,
     DataStorageService,
     AuthService,
