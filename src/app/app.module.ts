@@ -10,6 +10,7 @@ import {AuthModule} from './auth/auth.module';
 import {CoreModule} from './core/core.module';
 import {StoreModule} from '@ngrx/store';
 import {shoppingListReducer} from './shopping-list/store/shopping-list.reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,11 @@ import {shoppingListReducer} from './shopping-list/store/shopping-list.reducers'
     SharedModule,
     AuthModule,
     CoreModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer})
+    StoreModule.forRoot({shoppingList: shoppingListReducer}),
+    // Note that you must instrument after importing StoreModule
+    StoreDevtoolsModule.instrument({
+      maxAge: 5
+    })
   ],
   bootstrap: [AppComponent]
 })
