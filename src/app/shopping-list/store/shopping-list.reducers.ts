@@ -1,4 +1,4 @@
-import * as ShoppingListActions from './shopping-list.action';
+import * as ShoppingListActions from './shopping-list.actions';
 
 import {Ingredient} from '../../shared/ingredient.model';
 
@@ -62,7 +62,6 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         editedIngredientIndex: action.payload
       };
     case ShoppingListActions.STOP_EDIT:
-      const editedIngredient = {...state.ingredients[action.payload]};
       return {
         ...state,
         editedIngredient: null,

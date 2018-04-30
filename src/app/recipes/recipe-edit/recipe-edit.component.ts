@@ -33,11 +33,6 @@ export class RecipeEditComponent implements OnInit {
       this.recipeService.updateRecipe(this.id, this.recipeForm.value);
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
-      // this.recipeService.saveRecipe(this.recipeForm.value).
-      //   subscribe(
-      //     (response) => { console.log(response); },
-      //     (error) => { console.log(error); }
-      //   );
     }
     this.onCancel();
   }

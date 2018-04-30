@@ -5,7 +5,7 @@ import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import * as ShoppingListActions from '../../shopping-list/store/shopping-list.action';
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromApp from '../../store/app.reducers';
 
 @Component({
