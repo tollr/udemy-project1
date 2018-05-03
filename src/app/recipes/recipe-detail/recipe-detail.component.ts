@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -19,8 +18,7 @@ export class RecipeDetailComponent implements OnInit {
   paramsSubscription: Subscription;
   id: number;
 
-  constructor(private recipeService: RecipeService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private store: Store<fromRecipe.FeatureState>) { }
 
